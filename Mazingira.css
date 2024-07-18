@@ -36,7 +36,7 @@ body {
     max-width: 1200px;
     margin: 20px auto;
     padding: 20px;
-    background-color: white;
+    background-color: rgb(234, 248, 242);
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -46,6 +46,7 @@ body {
     margin-bottom: 20px;
 }
 
+
 /* Tree Seedlings Section */
 .tree-seedlings {
     display: flex;
@@ -54,7 +55,7 @@ body {
 }
 
 .tree-seedlings img:first-of-type {
-    width: 100%;
+    width: 25%;
     max-height: 300px;
     object-fit: cover;
     border-radius: 10px;
@@ -108,7 +109,7 @@ button {
 }
 
 button:hover {
-    background-color: #10f843;
+    background-color: #f81071;
 }
 
 /* Input Field Styling */

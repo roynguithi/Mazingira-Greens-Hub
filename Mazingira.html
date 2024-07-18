@@ -11,10 +11,25 @@
         <h1>Mazingira Greens Hub</h1>
         <p>Selling a variety of tree seedlings at an affordable price</p>
     </header>
+    <div class="login-container">
+        <form class="login-form" action="/login" method="POST">
+            <h2>Login</h2>
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Login</button>
+            <p class="signup-link">Don't have an account? <a href="/signup">Sign up</a></p>
+        </form>
+    </div>
     <div class="container">
         <h2>Our Tree Seedlings</h2>
         <div class="tree-seedlings">
-            <img src="https://i.pinimg.com/originals/94/6d/97/946d97caa4d99fc02e5222e57be30ce4.gif"alt="Tree">
+            <img src="https://i.pinimg.com/originals/94/6d/97/946d97caa4d99fc02e5222e57be30ce4.gif"alt="Tree">    
             <div class="card">
                 <img src="https://i.pinimg.com/564x/24/a8/18/24a81888f55e06f5f93f304b50303d6c.jpg" alt="Meru-oak tree">
                 <h3>Meru-oak (Vitex keniensis)</h3>
@@ -153,7 +168,7 @@
     <button id="addItem">Add Item</button>
     <button id="clearList">Clear List</button>
     <button id="markPurchases">Mark All as Purchased</button>
-    <ul id="listContainer"></ul>
+    <ul id="listContainer">tree-seedlings</ul>
 
     <script src="Mazingira.js">Mazingira</script>
 </body>

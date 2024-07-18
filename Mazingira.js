@@ -4,12 +4,56 @@ document.addEventListener('DOMContentLoaded', () => {
     const clearListButton = document.getElementById('clearList');
     const markPurchasesButton = document.getElementById('markPurchases');
     const listContainer = document.getElementById('listContainer');
-    let shoppingList = [];
+    let seedlings = [];
+
+    /*Function to handle form submission*/
+    document.addEventListener('DOMContentLoaded', () => {
+        const loginForm = document.getElementById('loginForm');
+    
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+    
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+    
+            const loginData = {
+                username: username,
+                password: password
+            };
+    
+            try {
+                const response = await fetch('/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(loginData)
+                });
+    
+                if (response.ok) {
+                    const result = await response.json();
+                    // Handle successful login
+                    console.log('Login successful:', result);
+                    // Redirect or update the UI as needed
+                    window.location.href = '/dashboard'; // Example redirect
+                } else {
+                    // Handle login error
+                    console.log('Login failed:', response.statusText);
+                    // Display error message to user
+                    alert('Login failed. Please check your username and password and try again.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                // Display error message to user
+                alert('An error occurred. Please try again later.');
+            }
+        });
+    });
 
     // Function to render the shopping list
     function renderList() {
         listContainer.innerHTML = '';
-        shoppingList.forEach((item, index) => {
+        seedlings.forEach((item, index) => {
             let li = document.createElement('li');
             li.textContent = item.name;
             if (item.purchased) {
@@ -24,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function addItem() {
         let newItem = itemInput.value.trim();
         if (newItem !== '') {
-            shoppingList.push({ name: newItem, purchased: false });
+            seedlings.push({ name: newItem, purchased: false });
             itemInput.value = '';
             renderList();
         }
@@ -32,13 +76,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to toggle the purchased state of an item
     function togglePurchased(index) {
-        shoppingList[index].purchased = !shoppingList[index].purchased;
+        seedlings[index].purchased = !seedlings[index].purchased;
         renderList();
     }
 
     // Function to clear the list
     function clearList() {
-        shoppingList = [];
+        seedlings = [];
         renderList();
     }
 
