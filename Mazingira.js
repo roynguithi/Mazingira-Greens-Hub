@@ -6,6 +6,83 @@ document.addEventListener('DOMContentLoaded', () => {
     const listContainer = document.getElementById('listContainer');
     let seedlings = [];
 
+    document.addEventListener('DOMContentLoaded', () => {
+        // Smooth scrolling for navigation links
+        const navLinks = document.querySelectorAll('.navbar a');
+    
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = e.currentTarget.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+    
+                if (targetSection) {
+                    window.scrollTo({
+                        top: targetSection.offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    
+        // Form validation and submission
+        const contactForm = document.getElementById('contactForm');
+        
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+    
+            // Form validation
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+            
+            if (!name || !email || !message) {
+                alert('Please fill in all fields.');
+                return;
+            }
+    
+            if (!validateEmail(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+    
+            // Prepare data for submission
+            const contactData = {
+                name: name,
+                email: email,
+                message: message
+            };
+    
+            // Submit form data via POST request
+            try {
+                const response = await fetch('/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(contactData)
+                });
+    
+                if (response.ok) {
+                    alert('Message sent successfully!');
+                    contactForm.reset();
+                } else {
+                    console.log('Failed to send message:', response.statusText);
+                    alert('Failed to send message. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again later.');
+            }
+        });
+    
+        // Email validation function
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(String(email).toLowerCase());
+        }
+    });
+
     /*Function to handle form submission*/
     document.addEventListener('DOMContentLoaded', () => {
         const loginForm = document.getElementById('loginForm');
