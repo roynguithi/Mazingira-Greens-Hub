@@ -298,6 +298,25 @@ button {
 button:hover {
     background-color: #f81071;
 }
+/* Underline purchased items*/
+.purchased {
+    text-decoration: underline;
+}
+
+.contact {
+    margin: 2rem 0;
+}
+
+.contact form {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.contact label {
+    margin-top: 1rem;
+}
 
 /* Input Field Styling */
 input[type="text"] {
@@ -329,4 +348,4 @@ ul {
     input[type="text"] {
         width: calc(100% - 40px);
     }
-}s
+}

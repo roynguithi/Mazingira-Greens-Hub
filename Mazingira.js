@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const markPurchasesButton = document.getElementById('markPurchases');
     const listContainer = document.getElementById('listContainer');
     let seedlings = [];
-
+    //navigation links
     document.addEventListener('DOMContentLoaded', () => {
         // Smooth scrolling for navigation links
         const navLinks = document.querySelectorAll('.navbar a');
@@ -164,10 +164,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Function to mark all items as purchased
-    function markAllAsPurchased() {
-        shoppingList.forEach(item => item.purchased = true);
-        renderList();
-    }
+    document.getElementById('markPurchases').addEventListener('click', function() {
+        const items = document.querySelectorAll('#listContainer li');
+        items.forEach(item => {
+            item.classList.add('purchased');
+        });
+    });
+
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
+    
+        // Here you can add the code to send the data to your server using fetch or any other method
+        const responseDiv = document.getElementById('formResponse');
+        responseDiv.textContent = `Thank you for contacting us, ${name}. We will get back to you at ${email} soon.`;
+        responseDiv.style.color = 'green';
+    
+        // Clear the form
+        document.getElementById('contactForm').reset();
+    });
 
     // Attach event listeners to buttons
     addItemButton.addEventListener('click', addItem);
